@@ -1,0 +1,74 @@
+/*General Formatting*/
+* {
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-weight: bold;
+}
+body {
+    display: flex;
+    justify-content:  center;
+    align-items: center;
+
+    background-color: gray;
+
+    min-height: 95vh
+}
+.calculator_body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    background-color: turquoise;
+
+    padding: 1rem;
+    gap: 1rem;
+
+    border-radius: 1rem;
+    border-style: solid;
+    border-color: teal;
+}
+
+/*Screen and Screen Sections*/
+#screen {
+    height: 2rem;
+    width: 10rem;
+    padding: 1.5rem;
+    text-align: right;
+
+    background-color: aquamarine;
+    border-style: solid;
+    border-color: teal;
+    border-radius: 0.5rem;
+}
+
+
+/*Button Section*/
+#buttons {
+    display: flex;
+    flex-wrap: wrap;
+
+    width: 14rem;
+    gap: 0.4rem;
+}
+button {
+    height: 3rem;
+    width: 3rem;
+    margin: 0.1rem;
+
+    border-radius: 1rem;
+    border-style: solid;
+    border-color: gray;
+}
+
+/*Buttons*/
+.num {
+    background-color: white;
+}
+.operator, #equals {
+    background-color: coral;
+}
+.system {
+    background-color: salmon;
+}
+#equals {
+    width: 6.5rem;
+}
