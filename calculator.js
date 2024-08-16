@@ -1,17 +1,29 @@
+/* 
+Calculator Body
+*/
+
 // Calculator Display
 let numberSection = document.querySelector("#number_section")
 let answerSection = document.querySelector("#answer_section")
-/* 
-Calculator Buttons
-*/
+
+// System Buttons
 let clearButton = document.querySelector("#clear_button")
 let deleteButton = document.querySelector("#delete_button")
+let negativePositiveButton = document.querySelector("#negative_positive_button")
 
+// Number Buttons
 let numberButtons = document.querySelectorAll(".num")
+
+// Operator Buttons and Equals Button
 let operatorButtons = document.querySelectorAll(".operator")
 let equalsButton = document.querySelector("#equals")
 
-// Needed elements for a calculator operation 
+/* 
+Calculator Logic
+*/
+
+// Needed variables for a calculator operation 
+let positive = true;
 let currentNum = "";
 let num1;
 let num2;
@@ -56,6 +68,39 @@ function equals() {
 Event Listeners for the Calculator Buttons
 */
 
+// System Buttons
+clearButton.addEventListener("click", () => {
+    num1 = "";
+    num2 = "";
+    operator = "";
+    currentNum = "";
+
+    numberSection.textContent = "";
+    answerSection.textContent = "";
+});
+
+deleteButton.addEventListener("click", () => {
+    currentNum = currentNum.slice(0, currentNum.length - 1);
+    numberSection.textContent = numberSection.textContent.slice(0, numberSection.textContent.length - 1);
+});
+
+negativePositiveButton.addEventListener("click", () => {
+    if (positive == true) {
+        currentNum = "-".concat(currentNum);
+        numberSection.textContent = numberSection.textContent.slice(0, numberSection.textContent.length - (currentNum.length - 1));
+        numberSection.textContent += currentNum;
+
+        positive = false;
+    } else {
+        currentNum = currentNum.replace("-", "");
+        numberSection.textContent = numberSection.textContent.slice(0, numberSection.textContent.length - (currentNum.length + 1));
+        numberSection.textContent += currentNum;
+
+        positive = true;
+    };
+});
+
+// Number Buttons
 numberButtons.forEach((button) => {
     button.addEventListener("click", () => {
         currentNum += button.id;
@@ -63,12 +108,13 @@ numberButtons.forEach((button) => {
     })
 });
 
+// Operator Buttons and Equals Button
 operatorButtons.forEach((button) => {
     button.addEventListener("click", () => {
         operator = button.id;
         num1 = currentNum;
         currentNum = "";
-        numberSection.textContent = "";
+        numberSection.textContent += button.id;
         answerSection.textContent = "";
     })
 });
@@ -77,4 +123,5 @@ equalsButton.addEventListener("click", () => {
     num2 = currentNum;
     answerSection.textContent = equals();
     currentNum = equals();
+    positive = true;
 });
